@@ -1,0 +1,125 @@
+import os
+import subprocess
+import sys
+import tempfile
+import threading
+import unittest
+from pathlib import Path
+
+from feed.service import make_server
+from feed.store import Store
+
+ROOT = Path(__file__).resolve().parents[2]
+FEED = ROOT / "feed"
+
+
+class RunMenuScriptTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        root = Path(self.tmp.name)
+        (root / "public").mkdir()
+        self.store = Store(str(root / "feed.db"))
+        self.server = make_server(self.store, str(root / "public"), "tok", host="127.0.0.1", port=0)
+        threading.Thread(target=self.server.serve_forever, daemon=True).start()
+        self.env = {**os.environ, "FEED_URL": f"http://127.0.0.1:{self.server.server_address[1]}", "FEED_TOKEN": "tok", "PYTHON": sys.executable}
+
+    def tearDown(self):
+        self.server.shutdown()
+        self.server.server_close()
+        self.tmp.cleanup()
+
+    def test_run_menu_prints_nothing_new_on_empty_service(self):
+        result = subprocess.run(["bash", str(FEED / "run_menu.sh")], env=self.env, capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "Research menu: nothing new.\n")
+
+    def test_run_stats_prints_header(self):
+        result = subprocess.run(["bash", str(FEED / "run_stats.sh")], env=self.env, capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(result.stdout.startswith("Feed stats · last 7 days"))
+
+    def test_ctl_wrapper_runs_feedctl_from_anywhere(self):
+        env = {**self.env, "HOME": self.tmp.name}
+        result = subprocess.run(["bash", str(FEED / "ctl.sh"), "stats"], env=env, cwd=self.tmp.name, capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(result.stdout.startswith("Feed stats"))
+
+    def test_run_skill_desk_prints_no_candidates_on_empty_service(self):
+        result = subprocess.run(["bash", str(FEED / "run_skill_desk.sh")], env=self.env, capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "Skill desk: no candidates.\n")
+
+    def test_run_video_desk_prints_no_reels_on_empty_service(self):
+        result = subprocess.run(["bash", str(FEED / "run_video_desk.sh")], env=self.env, capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "Video desk: no reels.\n")
+
+    def test_video_desk_prompt_contains_contract(self):
+        text = (FEED / "prompts" / "video_desk.md").read_text()
+        for needle in ("Video desk: no reels.", "reply exactly `[SILENT]`", "Outliers", "Gaps", "Hook:", "Receipt:", "set-status <id> shown --insight", "Never copy a hook"):
+            self.assertIn(needle, text, needle)
+
+    def test_skill_desk_prompt_contains_contract(self):
+        text = (FEED / "prompts" / "skill_desk.md").read_text()
+        for needle in ("Skill desk: no candidates.", "reply exactly `[SILENT]`", "set-status <id> skipped --kind", "Vs <known option>", "Verdict: <strong | watch>", "Angle:", "Kind: <skill | tool | pack>", "Post: \"<first line>\"", "--kind framework", "read the owner's bar", "Useful beats\nnew", "Domain roundup", '"draft 1"', "never publish, install, execute"):
+            self.assertIn(needle, text, needle)
+
+    def test_run_collect_script_is_executable_and_points_at_collect(self):
+        text = (FEED / "run_collect.sh").read_text()
+        self.assertIn("feed.collect", text)
+        self.assertTrue(os.access(FEED / "run_collect.sh", os.X_OK))
+        self.assertTrue(os.access(FEED / "run_menu.sh", os.X_OK))
+
+
+class AgentFilesTest(unittest.TestCase):
+    def test_prompt_contains_gate_and_silent_rule(self):
+        text = (FEED / "prompts" / "menu.md").read_text()
+        for needle in (
+            "Why would the owner's audience care?",
+            "Audience: <why the audience cares>",
+            "Why now?",
+            "What could a generic AI creator not honestly write here?",
+            "at most one verification fetch per item",
+            "feed/ctl.sh\" set-status",
+            "set-status <id> skipped",
+            "Never invent a number",
+            "POSTS",
+            "skipped --kind framework",
+            "generic: evergreen",
+            "never a fact source on its own",
+            "--insight",
+            "reply exactly `[SILENT]`",
+            "Research menu: nothing new",
+        ):
+            self.assertIn(needle, text, needle)
+
+    def test_skill_frontmatter_valid(self):
+        lines = (ROOT / "skills" / "feed" / "SKILL.md").read_text().splitlines()
+        self.assertEqual(lines[0], "---")
+        self.assertIn("name: feed", lines[1:6])
+        self.assertTrue(any(l.startswith("description:") for l in lines[1:6]))
+        self.assertIn("---", lines[2:8])
+        text = "\n".join(lines)
+        self.assertIn("feed/ctl.sh\" pick", text)
+        self.assertIn("linkedin-writer", text)
+        self.assertIn("set-status", text)
+
+    def test_scheduling_doc_names_every_job_and_no_host_ids(self):
+        text = (ROOT / "docs" / "scheduling.md").read_text()
+        for name in ("feed-menu", "feed-collect", "feed-stats", "skill-desk", "video-desk"):
+            self.assertIn(name, text)
+        self.assertIn("30 9,16 * * *", text)
+        self.assertIn("[SILENT]", text)
+        self.assertNotIn("1f990ab4df95", text)
+        self.assertNotIn("dfbc156f55c1", text)
+
+    def test_prompts_and_skills_use_the_generic_ctl_path(self):
+        files = list((FEED / "prompts").glob("*.md")) + list((ROOT / "skills").glob("*/SKILL.md"))
+        for f in files:
+            text = f.read_text()
+            self.assertNotIn("~/.hermes", text, f)
+            self.assertNotIn("feed-ctl.sh", text, f)
+
+
+if __name__ == "__main__":
+    unittest.main()

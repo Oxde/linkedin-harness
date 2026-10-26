@@ -1,0 +1,136 @@
+{
+  "generated_at": null,
+  "analytics": {
+    "status": "not_connected",
+    "message": "Connect LinkedIn browser read access or a paid data provider to populate followers, impressions, comments, and replies.",
+    "followers": null,
+    "impressions_30d": null,
+    "comments_to_reply": null
+  },
+  "latest_posts": [],
+  "active_items": [],
+  "sources": [
+    {
+      "name": "@data_secrets",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/data_secrets"
+    },
+    {
+      "name": "@ai_machinelearning_big_data",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/ai_machinelearning_big_data"
+    },
+    {
+      "name": "@human20",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/human20"
+    },
+    {
+      "name": "@NeuralShit",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/NeuralShit"
+    },
+    {
+      "name": "@llm_under_hood",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/llm_under_hood"
+    },
+    {
+      "name": "@tips_ai",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/tips_ai"
+    },
+    {
+      "name": "@ppprompt",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/ppprompt"
+    },
+    {
+      "name": "@neurohive",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/neurohive"
+    },
+    {
+      "name": "@ai_newz",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/ai_newz"
+    },
+    {
+      "name": "@dealerAI",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/dealerAI"
+    },
+    {
+      "name": "@CGIT_Vines",
+      "type": "Telegram lead",
+      "status": "active",
+      "url": "https://t.me/s/CGIT_Vines"
+    },
+    {
+      "name": "techcrunch.com",
+      "type": "RSS",
+      "status": "active",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/"
+    },
+    {
+      "name": "www.theverge.com",
+      "type": "RSS",
+      "status": "active",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
+    },
+    {
+      "name": "venturebeat.com",
+      "type": "RSS",
+      "status": "active",
+      "url": "https://venturebeat.com/category/ai/feed"
+    },
+    {
+      "name": "news.mit.edu",
+      "type": "RSS",
+      "status": "active",
+      "url": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+    }
+  ],
+  "queues": [
+    {
+      "name": "Research menu",
+      "schedule": "twice daily",
+      "status": "active",
+      "purpose": "Verified candidates from the feed, one line of why each matters; you pick."
+    },
+    {
+      "name": "Skill desk",
+      "schedule": "twice weekly",
+      "status": "active",
+      "purpose": "Judges top skill and repo candidates against the known option; skips the generic ones."
+    },
+    {
+      "name": "Video desk",
+      "schedule": "twice weekly",
+      "status": "optional",
+      "purpose": "Competitor reels of the week: outliers, formats, gaps, recordable ideas."
+    },
+    {
+      "name": "Feed collect",
+      "schedule": "twice daily",
+      "status": "active",
+      "purpose": "Runs every producer and posts new items to the feed service. No LLM."
+    },
+    {
+      "name": "Post performance",
+      "schedule": "daily",
+      "status": "needs read adapter",
+      "purpose": "Metrics, comments, reply drafts, and one lesson after a recent post."
+    }
+  ]
+}

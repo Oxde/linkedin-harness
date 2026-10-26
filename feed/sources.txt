@@ -1,0 +1,72 @@
+# Research feed sources. One entry per line, `#` starts a comment.
+# Edit here, not in code. Producers read the section they own.
+# This is an example set for an AI-agents niche. Replace every section with the sources of your lane.
+
+# Public channels read through t.me/s/<channel>; no Telegram login needed. Leads only, never facts.
+[telegram]
+data_secrets
+ai_machinelearning_big_data
+human20
+NeuralShit
+
+[rss]
+https://techcrunch.com/category/artificial-intelligence/feed/
+https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+https://venturebeat.com/category/ai/feed
+https://news.mit.edu/rss/topic/artificial-intelligence2
+
+[clawhub_queries]
+agent
+video
+copywriting
+research
+
+[skillssh_queries]
+agent skills
+claude code
+video editing
+linkedin
+research
+automation
+
+[github_queries]
+agent skills | agent skills in:name,description stars:>=10
+Claude skills | claude skills in:name,description stars:>=10
+AI agent workflows | ai agent workflows in:name,description stars:>=20
+
+# Rising: created in the last 14 days and already past 50 stars. The strongest "new and gaining
+# traction" signal GitHub search gives without a trending API. `created:` is filled in by the producer.
+[github_rising]
+rising agent skills | agent skills in:name,description stars:>=50
+rising claude code | claude code in:name,description stars:>=50
+rising MCP | mcp server in:name,description stars:>=50
+rising agents | ai agent in:name,description stars:>=100
+
+[github_watchlist]
+anthropics/skills
+vercel-labs/agent-skills
+openai/skills
+obra/superpowers
+
+# Public discussion feeds for the `post` lane: what people are talking about, with votes.
+[hn_queries]
+agent skills
+claude code
+codex
+mcp server
+ai agents
+
+[lobsters_tags]
+ai
+
+# Instagram creators watched through Apify (apify/instagram-reel-scraper) for the `video` lane.
+# Needs APIFY_API_KEY. One handle per line, without the @. Empty means the video producer skips.
+[instagram_creators]
+
+# LinkedIn public posts in your lane (harvestapi/linkedin-post-search, relevance, past week). Needs APIFY_API_KEY.
+[linkedin_queries]
+Claude Code agents
+agent skills
+AI agents operators
+Codex agents
+MCP server
