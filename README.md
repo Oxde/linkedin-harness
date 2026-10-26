@@ -27,9 +27,14 @@ producers (news, skills, repos, discussions, reels)
 | path | what |
 |---|---|
 | `feed/` | the research feed: producers, SQLite store, HTTP API, CLI, job prompts and run scripts. Python standard library only. |
-| `skills/linkedin-writer/` | the writing workflow: research modes, evidence, hook pass, statuses, approval rules |
+| `skills/linkedin-writer/` | the writing workflow: research modes, evidence, a hook library, statuses, approval rules |
 | `skills/feed/` | how the chat agent resolves "the second one" to a feed item and hands it to the writer |
-| `skills/anti-ai-writing/` | banned words, banned shapes, and the check that runs on every draft |
+| `skills/anti-ai-writing/` | banned words, banned shapes, and `clean.py`: strips invisible characters and flags every tell by line |
+| `skills/linkedin-comment/`, `linkedin-reply/` | comments under other people's posts (or "skip"), and triaged replies under your own |
+| `skills/linkedin-inbox/`, `linkedin-outreach/` | DM and invite triage, and one-person outreach only when there is a real reason |
+| `skills/linkedin-week/`, `linkedin-audit/` | the week's plan from the feed and your drafts; the post-mortem from your own numbers |
+| `skills/linkedin-repurpose/`, `linkedin-carousel/` | one long source into standalone posts; carousels rendered as PDF from your visual style |
+| `skills/linkedin-profile/` | a 100-point profile rubric and rewrites, weakest part first |
 | `skills/skill-radar/` | vetting and safely testing agent skills and repos before writing about them |
 | `skills/skill-posts/` | outline for your own skill-and-repo post rules (you fill it in) |
 | `templates/` | `VOICE.md`, `VISUAL_STYLE.md`, `ACTIVE.md`, `draft.md`, `COMMENT_QUEUE.md`, `POSTS.md` |
@@ -63,7 +68,7 @@ free posting (`docs/publishing.md`): one LinkedIn developer app, one token, no p
 
 ## Install just the skills
 
-The five skills work in any agent that reads `SKILL.md` files. The feed, the dashboard and the
+The 14 skills work in any agent that reads `SKILL.md` files. The feed, the dashboard and the
 publish script need the full clone above.
 
 ```bash

@@ -1,7 +1,7 @@
 {
   "name": "linkedin-harness",
   "displayName": "LinkedIn Harness",
-  "description": "Skills for running LinkedIn with AI agents: research-menu picks, writing in your voice, anti-AI-writing checks, skill vetting, and approval-gated posting.",
+  "description": "14 skills for running LinkedIn with AI agents: research-menu picks, posts in your voice, comments and replies, DMs, weekly plan, audit, profile, carousels, anti-AI-writing checks, approval-gated posting.",
   "author": { "name": "Oxde" },
   "homepage": "https://github.com/Oxde/linkedin-harness",
   "repository": "https://github.com/Oxde/linkedin-harness",

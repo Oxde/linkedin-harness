@@ -3,6 +3,6 @@
   "description": "LinkedIn Harness: skills for researching, writing and safely posting on LinkedIn with AI agents.",
   "owner": { "name": "Oxde" },
   "plugins": [
-    { "name": "linkedin-harness", "source": "./", "description": "Research-menu picks, voice-first writing, anti-AI-writing pass, skill vetting, approval-gated posting." }
+    { "name": "linkedin-harness", "source": "./", "description": "Posts, comments, replies, DMs, weekly plan, audit, profile, carousels and an anti-AI-writing pass, all approval-gated." }
   ]
 }

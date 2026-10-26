@@ -69,7 +69,7 @@ into the profile's scripts directory (Hermes refuses symlinks that point outside
 ```bash
 R=/path/to/linkedin-harness; P=~/.hermes/profiles/<profile>
 for f in run_menu run_collect run_stats run_skill_desk run_video_desk ctl; do cp $R/feed/$f.sh $P/scripts/feed-$f.sh; done
-for s in feed linkedin-writer anti-ai-writing skill-posts skill-radar; do mkdir -p $P/skills/$s && cp $R/skills/$s/*.md $P/skills/$s/; done
+for s in $(ls $R/skills); do mkdir -p $P/skills/$s && cp -r $R/skills/$s/. $P/skills/$s/; done
 ```
 
 Put `LINKEDIN_HARNESS`, `FEED_URL` and `FEED_TOKEN` in the profile's `.env` (and set

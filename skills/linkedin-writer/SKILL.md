@@ -23,7 +23,7 @@ Files this skill reads, all in the owner's workspace (copy them from `templates/
 3. Research the primary source before drafting where a source exists.
 4. Extract evidence: actor, event, concrete facts, quote/number, weirdest detail, tension, material caveat.
 5. Select one angle. Do not turn one source into three vague takes.
-6. Run a separate hook pass. Line 1 must make the subject clear and create a reason to read.
+6. Run a separate hook pass with `references/hooks.md`. Line 1 must make the subject clear and create a reason to read.
 7. Draft in the user's voice. Preserve a good rough draft's rhythm instead of polishing it into analyst prose.
 8. Run fact, anti-slop, and visual-fit passes.
 9. Persist the result to a real Markdown draft file.

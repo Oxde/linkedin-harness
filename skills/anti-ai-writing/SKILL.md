@@ -58,7 +58,21 @@ punctuation. The number does that job.
 - Praise of the source ("a fascinating paper", "an impressive release"). Say what it did.
 - Jargon a smart friend outside the field would not know, left unexplained.
 
-## 4. The check
+## 4. The script
+
+`scripts/clean.py` does the mechanical part. It removes invisible characters and odd spaces,
+then flags banned words, the shapes above, em dashes, a hook with nothing concrete, and a
+closing question, each with its line number. It never rewrites a sentence and gives no "human
+score": it finds tells, it cannot judge voice or truth.
+
+```bash
+python3 scripts/clean.py draft.txt -o draft.txt --voice VOICE.md
+```
+
+Exit code 1 means there are flags. Fix every flagged line yourself, run it again, then do the
+check below.
+
+## 5. The check
 
 Read the draft once per question. Fix, then read again.
 
