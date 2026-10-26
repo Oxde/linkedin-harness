@@ -1,6 +1,10 @@
 ---
 name: linkedin-writer
 description: Use when researching, drafting, publishing, monitoring, or improving LinkedIn content. Build source-backed posts in the user's real voice; keep drafts durable; require approval for every external action.
+license: MIT
+metadata:
+  version: "1.0.0"
+  repository: "https://github.com/Oxde/linkedin-harness"
 ---
 
 # LinkedIn Writer
@@ -33,7 +37,7 @@ Files this skill reads, all in the owner's workspace (copy them from `templates/
 - Do not make a long draft longer when feedback says it is not meaty. Rebuild around the strongest fact, table, mechanism, incident, or artifact.
 - Do not repeat an unchanged draft in scheduled reminders.
 - Do not publish, comment, DM, like, follow, or connect without exact approval.
-- Publish only through `scripts/linkedin_publish.py` with the SHA-256 of the exact approved text
+- Publish only through `$LINKEDIN_HARNESS/scripts/linkedin_publish.py` (in the linkedin-harness repo) with the SHA-256 of the exact approved text
   (`docs/publishing.md`): `--hash-only`, the user's "post now", dry run, then `--post`.
 
 ## Draft statuses

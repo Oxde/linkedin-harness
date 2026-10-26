@@ -1,6 +1,10 @@
 ---
 name: feed
 description: Resolve the user's pick from the latest research menu, mark it in the feed service, and hand it to the LinkedIn writer.
+license: MIT
+metadata:
+  version: "1.0.0"
+  repository: "https://github.com/Oxde/linkedin-harness"
 ---
 
 # feed — picking from the research menu

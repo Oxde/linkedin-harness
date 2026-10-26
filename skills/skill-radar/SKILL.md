@@ -1,6 +1,10 @@
 ---
 name: skill-radar
 description: Discover, vet, test, and turn agent skills, repos and workflow packs into content without blindly installing or amplifying them.
+license: MIT
+metadata:
+  version: "1.0.0"
+  repository: "https://github.com/Oxde/linkedin-harness"
 ---
 
 # Skill Radar

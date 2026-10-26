@@ -4,6 +4,10 @@ A harness for running LinkedIn with AI agents: research comes in on a schedule, 
 short menu in chat, the agent drafts in your voice, and nothing goes out without your exact
 approval.
 
+![Demo: research menu → pick → draft → hash-guarded post](docs/demo.gif)
+
+<sub>Example data. The menu, pick and publish outputs come from real runs of the scripts; the final post line is illustrative.</sub>
+
 It is not a prompt pack and not an auto-poster. It is the plumbing around an agent you already
 use (Claude Code, Codex, Hermes, or anything that can run a script and read a skill file):
 a research feed, the prompts for the scheduled jobs, writing skills, draft templates, a
@@ -56,6 +60,20 @@ cp -r skills/* ~/.claude/skills/                       # or your agent's skills 
 
 Then open the dashboard at http://127.0.0.1:4872, schedule the jobs (`docs/scheduling.md`), and set up
 free posting (`docs/publishing.md`): one LinkedIn developer app, one token, no paid tools.
+
+## Install just the skills
+
+The five skills work in any agent that reads `SKILL.md` files. The feed, the dashboard and the
+publish script need the full clone above.
+
+```bash
+npx skills add Oxde/linkedin-harness                       # any agent, via the skills CLI
+
+claude plugin marketplace add Oxde/linkedin-harness         # Claude Code plugin
+claude plugin install linkedin-harness@linkedin-harness
+
+git clone https://github.com/Oxde/linkedin-harness && cp -r linkedin-harness/skills/* ~/.agents/skills/   # Codex
+```
 
 ## Make it yours
 

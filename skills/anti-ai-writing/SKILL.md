@@ -1,6 +1,10 @@
 ---
 name: anti-ai-writing
 description: Remove the phrases, shapes and habits that make a post read as machine-written. Use on every LinkedIn draft, comment and reply before it goes to the user for approval, and when the user says a draft "sounds like AI".
+license: MIT
+metadata:
+  version: "1.0.0"
+  repository: "https://github.com/Oxde/linkedin-harness"
 ---
 
 # Anti-AI writing

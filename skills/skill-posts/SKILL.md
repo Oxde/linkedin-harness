@@ -1,6 +1,10 @@
 ---
 name: skill-posts
 description: Write LinkedIn posts about agent skills, repos and tools that people save to use later. Use when a research-menu pick is in the SKILLS or REPOS lane, when the skill desk hands over a candidate, or when the user asks for a post about a skill, repo, pack or workflow tool.
+license: MIT
+metadata:
+  version: "1.0.0"
+  repository: "https://github.com/Oxde/linkedin-harness"
 ---
 
 # Skill posts (outline, fill in your own)
