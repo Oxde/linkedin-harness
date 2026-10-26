@@ -33,6 +33,8 @@ Files this skill reads, all in the owner's workspace (copy them from `templates/
 - Do not make a long draft longer when feedback says it is not meaty. Rebuild around the strongest fact, table, mechanism, incident, or artifact.
 - Do not repeat an unchanged draft in scheduled reminders.
 - Do not publish, comment, DM, like, follow, or connect without exact approval.
+- Publish only through `scripts/linkedin_publish.py` with the SHA-256 of the exact approved text
+  (`docs/publishing.md`): `--hash-only`, the user's "post now", dry run, then `--post`.
 
 ## Draft statuses
 

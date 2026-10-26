@@ -19,8 +19,9 @@ the agent never sees a password.
 - `w_member_social`: publish and manage posts for the signed-in member.
 - `w_member_social_feed`: comments and reactions for the signed-in member.
 
-Managed OAuth providers (for example Maton, Composio, or your own small OAuth app) save you from
-running the token flow yourself. Every post or comment still needs the user's exact approval.
+The free path is your own developer app with the self-serve "Share on LinkedIn" product and
+`scripts/linkedin_publish.py`; step by step in [publishing.md](publishing.md). Managed OAuth
+providers (for example Maton or Composio) handle token refresh for you, at a cost. Every post or comment still needs the user's exact approval.
 
 ## 2. Own-post metrics and research: a logged-in browser bridge
 

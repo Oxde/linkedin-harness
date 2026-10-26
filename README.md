@@ -30,7 +30,7 @@ producers (news, skills, repos, discussions, reels)
 | `skills/skill-posts/` | outline for your own skill-and-repo post rules (you fill it in) |
 | `templates/` | `VOICE.md`, `VISUAL_STYLE.md`, `ACTIVE.md`, `draft.md`, `COMMENT_QUEUE.md`, `POSTS.md` |
 | `dashboard/` | a static dashboard served by the feed: feed stats, items, latest posts |
-| `scripts/` | `quality_check.py` (draft preflight), `collect_linkedin_metrics.py` (own-post numbers through a browser bridge) |
+| `scripts/` | `linkedin_publish.py` (free posting through LinkedIn's API, hash-guarded), `quality_check.py` (draft preflight), `collect_linkedin_metrics.py` (own-post numbers through a browser bridge) |
 | `docs/` | architecture, growth system, research playbook, adapters, feed reference, scheduling, deploy |
 
 ## Quick start
@@ -54,7 +54,8 @@ mkdir -p ~/linkedin && cp templates/*.md ~/linkedin/   # fill VOICE.md first; it
 cp -r skills/* ~/.claude/skills/                       # or your agent's skills directory
 ```
 
-Then open the dashboard at http://127.0.0.1:4872 and schedule the jobs (`docs/scheduling.md`).
+Then open the dashboard at http://127.0.0.1:4872, schedule the jobs (`docs/scheduling.md`), and set up
+free posting (`docs/publishing.md`): one LinkedIn developer app, one token, no paid tools.
 
 ## Make it yours
 
@@ -84,6 +85,7 @@ The harness ships the method; your voice is yours. These files are templates on 
 - [Architecture](docs/architecture.md) — the four loops and the folder model
 - [Growth system](docs/growth-system.md) — the four queues, the quality bar, statuses
 - [Research playbook](docs/research-playbook.md) — research modes, comment and reply rules
+- [Posting for free](docs/publishing.md) — your own LinkedIn app, a token, and a hash-guarded publish script
 - [Adapters](docs/linkedin-adapters.md) — publishing, reading, data APIs, other platforms
 - [Research feed](docs/research-feed.md) — lanes, statuses, API, environment
 - [Scheduling](docs/scheduling.md) — cron, Claude Code, Hermes
@@ -94,6 +96,7 @@ The harness ships the method; your voice is yours. These files are templates on 
 ```bash
 python3 -m unittest discover -s feed/tests -t .
 (cd dashboard && python3 -m unittest discover -s tests)
+python3 -m unittest discover -s scripts/tests
 ```
 
 ## License

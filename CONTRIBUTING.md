@@ -11,4 +11,5 @@
   ```bash
   python3 -m unittest discover -s feed/tests -t .
   (cd dashboard && python3 -m unittest discover -s tests)
+  python3 -m unittest discover -s scripts/tests
   ```
